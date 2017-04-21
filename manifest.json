@@ -1,0 +1,23 @@
+{
+    "manifest_version": 2,
+    "name": "GitHub Notifier",
+    "description": "WebExtension to get notifications from GitHub",
+    "version": "1.0",
+    "developer": {
+        "name": "Angel Fernando Quiroz Campos",
+        "url": "https://angelfqc.wordpress.com"
+    },
+    "icons": {
+        "48": "icons/github.png"
+    },
+    "background": {
+        "scripts": ["background.js"]
+    },
+    "browser_action": {
+        "default_icon": "icons/github.png"
+    },
+    "permissions": ["*://github.com/notifications", "tabs", "storage"],
+    "options_ui": {
+        "page": "options/page.html"
+    }
+}
