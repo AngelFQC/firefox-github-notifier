@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "GitHub Notifier",
     "description": "WebExtension to get notifications from GitHub",
-    "version": "1.0",
+    "version": "1.0.2",
     "developer": {
         "name": "Angel Fernando Quiroz Campos",
         "url": "https://angelfqc.wordpress.com"
@@ -19,5 +19,10 @@
     "permissions": ["*://github.com/notifications", "tabs", "storage"],
     "options_ui": {
         "page": "options/page.html"
+    },
+    "applications": {
+        "gecko": {
+            "id": "{0906178a-2043-4d0c-a099-bd6a4d00945e}"
+        }
     }
 }
