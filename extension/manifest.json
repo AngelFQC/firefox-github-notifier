@@ -16,7 +16,7 @@
     "browser_action": {
         "default_icon": "icons/github.png"
     },
-    "permissions": ["*://github.com/notifications", "tabs", "storage"],
+    "permissions": ["*://api.github.com/notifications", "tabs", "storage"],
     "options_ui": {
         "page": "options/page.html"
     },

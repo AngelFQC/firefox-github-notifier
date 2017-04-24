@@ -5,7 +5,6 @@ browser.storage.local.get('accessToken')
         let accessToken = options.accessToken || '';
 
         function update() {
-            console.log('update');
             if (!accessToken) {
                 return;
             }
@@ -22,8 +21,6 @@ browser.storage.local.get('accessToken')
                         });
                 });
         }
-
-        update();
 
         setInterval(update, 1000 * 60);
     });
