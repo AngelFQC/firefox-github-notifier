@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "GitHub Notifier",
     "description": "WebExtension to get notifications from GitHub",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "developer": {
         "name": "Angel Fernando Quiroz Campos",
         "url": "https://angelfqc.wordpress.com"
