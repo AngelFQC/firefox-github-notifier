@@ -20,32 +20,26 @@ browser.storage.local.get('accessToken')
                                 text: notifications.length.toString()
                             });
 
-                            if (count >= notifications.length) {
+                            if (count === notifications.length) {
                                 return;
                             }
 
-                            notifications = notifications.slice(count);
+                            count = notifications.length;
 
-                            let items = [];
+                            let items = '';
 
                             notifications.forEach((notification) => {
-                                items.push({
-                                    title: notification.subject.title,
-                                    message: notification.repository.full_name
-                                });
+                                items += '[' + notification.repository.full_name + '] ';
+                                items += notification.subject.title;
+                                items += "\n";
                             });
-
-                            console.log(items);
 
                             browser.notifications.create({
-                                type: "list",
+                                type: "basic",
                                 iconUrl: browser.extension.getURL("icons/github.png"),
-                                title: "GitHub notifications",
-                                message: "There are " + items.length + " new notifications",
-                                items: items
+                                title: "There are " + count + " new notifications",
+                                message: items
                             });
-
-                            count = notifications.length;
                         });
                 });
         }
