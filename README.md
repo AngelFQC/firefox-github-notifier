@@ -1,2 +1,7 @@
-# github-notifier
-WebExtension to get notifications from GitHub
+# firefox-github-notifier
+A WebExtension to get notifications from GitHub on Firefox
+
+## Install
+
+On Firefox install from 
+https://addons.mozilla.org/es/firefox/addon/firefox-github-notifier/
