@@ -26,18 +26,22 @@ browser.storage.local.get('accessToken')
 
                             count = notifications.length;
 
+                            if (!count) {
+                                return;
+                            }
+
                             let items = '';
 
                             notifications.forEach((notification) => {
-                                items += '[' + notification.repository.full_name + '] ';
-                                items += notification.subject.title;
-                                items += "\n";
+                                items += `[${notification.repository.full_name}] ${notification.subject.title} \n`;
                             });
 
                             browser.notifications.create({
                                 type: "basic",
                                 iconUrl: browser.extension.getURL("icons/github.png"),
-                                title: "There are " + count + " new notifications",
+                                title: count === 1
+                                    ? `There is 1 new notification`
+                                    : `There are ${count} new notifications`,
                                 message: items
                             });
                         });
