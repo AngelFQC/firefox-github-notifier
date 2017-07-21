@@ -1,16 +1,18 @@
 const notificationsUrl = "https://github.com/notifications";
 var count = 0;
 
-browser.storage.local.get('accessToken')
+browser.storage.local
+    .get({
+        accessToken: '',
+        showNotifications: false
+    })
     .then((options) => {
-        let accessToken = options.accessToken || '';
-
         function update() {
-            if (!accessToken) {
+            if (!options.accessToken) {
                 return;
             }
 
-            fetch('https://api.github.com/notifications?access_token=' + accessToken, {
+            fetch(`https://api.github.com/notifications?access_token=${options.accessToken}`, {
                 cache: 'reload'
             })
                 .then((response) => {
@@ -25,6 +27,10 @@ browser.storage.local.get('accessToken')
                             }
 
                             count = notifications.length;
+
+                            if (!options.showNotifications) {
+                                return;
+                            }
 
                             if (!count) {
                                 return;
