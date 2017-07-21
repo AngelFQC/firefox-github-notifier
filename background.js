@@ -1,13 +1,13 @@
 const notificationsUrl = "https://github.com/notifications";
 var count = 0;
 
-browser.storage.local
-    .get({
-        accessToken: '',
-        showNotifications: false
-    })
-    .then((options) => {
-        function update() {
+function update() {
+    browser.storage.local
+        .get({
+            accessToken: '',
+            showNotifications: false
+        })
+        .then((options) => {
             if (!options.accessToken) {
                 return;
             }
@@ -52,10 +52,11 @@ browser.storage.local
                             });
                         });
                 });
-        }
 
-        setInterval(update, 1000 * 60);
-    });
+        });
+}
+
+setInterval(update, 1000 * 60);
 
 browser.browserAction.onClicked.addListener((e) => {
     browser.tabs.query({
