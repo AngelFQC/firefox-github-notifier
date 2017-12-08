@@ -18,8 +18,11 @@ function update() {
                 .then((response) => {
                     response.json()
                         .then((notifications) => {
+                            let badgeText = notifications.length
+                                + (notifications.length >= 50 ? '+' : '');
+
                             browser.browserAction.setBadgeText({
-                                text: notifications.length.toString()
+                                text: badgeText
                             });
 
                             if (count === notifications.length) {
@@ -47,7 +50,7 @@ function update() {
                                 iconUrl: browser.extension.getURL("icons/github.png"),
                                 title: count === 1
                                     ? `There is 1 new notification`
-                                    : `There are ${count} new notifications`,
+                                    : `There are ${badgeText} new notifications`,
                                 message: items
                             });
                         });
