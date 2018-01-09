@@ -25,7 +25,7 @@ function update() {
                                 text: badgeText
                             });
 
-                            if (count === notifications.length) {
+                            if (0 === notifications.length || count === notifications.length) {
                                 return;
                             }
 
