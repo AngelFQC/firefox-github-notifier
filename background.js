@@ -21,6 +21,10 @@ function update() {
                             let badgeText = notifications.length
                                 + (notifications.length >= 50 ? '+' : '');
 
+                            if (0 === notifications.length) {
+                                return;
+                            }
+                        
                             browser.browserAction.setBadgeText({
                                 text: badgeText
                             });
