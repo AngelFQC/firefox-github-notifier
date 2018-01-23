@@ -18,12 +18,12 @@ function update() {
                 .then((response) => {
                     response.json()
                         .then((notifications) => {
-                            let badgeText = notifications.length
-                                + (notifications.length >= 50 ? '+' : '');
-
                             if (0 === notifications.length) {
                                 return;
                             }
+
+                            let badgeText = notifications.length
+                                + (notifications.length >= 50 ? '+' : '');
                         
                             browser.browserAction.setBadgeText({
                                 text: badgeText
