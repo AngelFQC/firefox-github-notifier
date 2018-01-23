@@ -16,50 +16,65 @@ function update() {
                 cache: 'reload'
             })
                 .then((response) => {
-                    response.json()
-                        .then((notifications) => {
-                            if (0 === notifications.length) {
-                                return;
-                            }
+                    if (response.ok) {
+                        return response.json();
+                    }
 
-                            let badgeText = notifications.length
-                                + (notifications.length >= 50 ? '+' : '');
-                        
-                            browser.browserAction.setBadgeText({
-                                text: badgeText
-                            });
-
-                            if (count === notifications.length) {
-                                return;
-                            }
-
-                            count = notifications.length;
-
-                            if (!options.showNotifications) {
-                                return;
-                            }
-
-                            if (!count) {
-                                return;
-                            }
-
-                            let items = '';
-
-                            notifications.forEach((notification) => {
-                                items += `[${notification.repository.full_name}] ${notification.subject.title} \n`;
-                            });
-
-                            browser.notifications.create({
-                                type: "basic",
-                                iconUrl: browser.extension.getURL("icons/github.png"),
-                                title: count === 1
-                                    ? `There is 1 new notification`
-                                    : `There are ${badgeText} new notifications`,
-                                message: items
-                            });
+                    response.json().then((error) => {
+                        browser.browserAction.setTitle({
+                            title: error.message
                         });
-                });
+                    });
 
+                    throw new Error(response.statusText);
+                })
+                .then((notifications) => {
+                    if (0 === notifications.length) {
+                        return;
+                    }
+
+                    let badgeText = notifications.length
+                        + (notifications.length >= 50 ? '+' : '');
+
+                    browser.browserAction.setBadgeText({
+                        text: badgeText
+                    });
+
+                    if (count === notifications.length) {
+                        return;
+                    }
+
+                    count = notifications.length;
+
+                    if (!options.showNotifications) {
+                        return;
+                    }
+
+                    if (!count) {
+                        return;
+                    }
+
+                    let items = '';
+
+                    notifications.forEach((notification) => {
+                        items += `[${notification.repository.full_name}] ${notification.subject.title} \n`;
+                    });
+
+                    browser.notifications.create({
+                        type: "basic",
+                        iconUrl: browser.extension.getURL("icons/github.png"),
+                        title: count === 1
+                            ? `There is 1 new notification`
+                            : `There are ${badgeText} new notifications`,
+                        message: items
+                    });
+                })
+                .catch((error) => {
+                    browser.browserAction.setTitle({
+                        title: error.message
+                    });
+                    browser.browserAction.disable();
+                });
         });
 }
 
