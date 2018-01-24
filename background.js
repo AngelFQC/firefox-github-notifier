@@ -5,7 +5,8 @@ function update() {
     browser.storage.local
         .get({
             accessToken: '',
-            showNotifications: false
+            showNotifications: false,
+            showNotificationsDecreased: true
         })
         .then((options) => {
             if (!options.accessToken) {
@@ -41,6 +42,10 @@ function update() {
                     });
 
                     if (count === notifications.length) {
+                        return;
+                    }
+
+                    if (count > notifications.length && !options.showNotificationsDecreased) {
                         return;
                     }
 
