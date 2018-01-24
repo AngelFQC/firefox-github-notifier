@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "GitHub Notifier",
     "description": "Get your notifications from GitHub",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "developer": {
         "name": "Angel Fernando Quiroz Campos",
         "url": "https://angelfqc.wordpress.com"
