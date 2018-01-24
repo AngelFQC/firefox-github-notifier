@@ -67,7 +67,7 @@ function update() {
 
                     browser.notifications.create({
                         type: "basic",
-                        iconUrl: browser.extension.getURL("icons/github.png"),
+                        iconUrl: browser.extension.getURL("icons/48/github.png"),
                         title: count === 1
                             ? `There is 1 new notification`
                             : `There are ${badgeText} new notifications`,

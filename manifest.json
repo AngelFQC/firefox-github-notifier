@@ -2,19 +2,20 @@
     "manifest_version": 2,
     "name": "GitHub Notifier",
     "description": "Get your notifications from GitHub",
-    "version": "1.1.1",
+    "version": "1.2.2",
     "developer": {
         "name": "Angel Fernando Quiroz Campos",
         "url": "https://angelfqc.wordpress.com"
     },
     "icons": {
-        "48": "icons/github.png"
+        "48": "icons/48/github.png",
+        "64": "icons/64/github.png"
     },
     "background": {
         "scripts": ["background.js"]
     },
     "browser_action": {
-        "default_icon": "icons/github.png"
+        "default_icon": "icons/48/github.png"
     },
     "permissions": ["*://api.github.com/notifications", "tabs", "storage", "notifications"],
     "options_ui": {
