@@ -31,6 +31,10 @@ function update() {
                 })
                 .then((notifications) => {
                     if (0 === notifications.length) {
+                        browser.browserAction.setBadgeText({
+                            text: ''
+                        });
+
                         return;
                     }
 
