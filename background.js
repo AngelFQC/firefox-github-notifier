@@ -30,6 +30,8 @@ function update() {
                     throw new Error(response.statusText);
                 })
                 .then((notifications) => {
+                    browser.browserAction.enable();
+
                     if (0 === notifications.length) {
                         browser.browserAction.setBadgeText({
                             text: ''
