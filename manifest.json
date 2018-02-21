@@ -8,7 +8,7 @@
         "url": "https://angelfqc.wordpress.com"
     },
     "icons": {
-        "64": "icons/github.svg"
+        "48": "icons/github.svg"
     },
     "background": {
         "scripts": ["background.js"]
@@ -18,7 +18,11 @@
         "theme_icons": [{
             "light": "icons/github_light.svg",
             "dark": "icons/github.svg",
-            "size": 64
+            "size": 16
+        },{
+            "light": "icons/github_light.svg",
+            "dark": "icons/github.svg",
+            "size": 32
         }]
     },
     "permissions": ["*://api.github.com/notifications", "tabs", "storage", "notifications"],
