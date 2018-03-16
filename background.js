@@ -30,6 +30,9 @@ function update() {
                     throw new Error(response.statusText);
                 })
                 .then((notifications) => {
+                    browser.browserAction.setTitle({
+                        title: 'GitHub Notifier'
+                    });
                     browser.browserAction.enable();
 
                     if (0 === notifications.length) {
