@@ -107,17 +107,8 @@ browser.browserAction.onClicked.addListener((e) => {
             return;
         }
 
-        browser.tabs.query({
-            'url': notificationsUrl,
+        browser.tabs.update(tabs[0].id, {
             'active': true
-        }, (activeTabs) => {
-            if (activeTabs.length) {
-                return;
-            }
-
-            browser.tabs.update(tabs[0].id, {
-                'active': true
-            });
         });
     });
 });
