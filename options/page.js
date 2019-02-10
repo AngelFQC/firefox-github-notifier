@@ -15,9 +15,13 @@ document.querySelector('form')
     .addEventListener('submit', (e) => {
         e.preventDefault();
 
+        let token = e.target['access_token'].value.trim();
+
         browser.storage.local.set({
-            accessToken: e.target['access_token'].value,
+            accessToken: token,
             showNotifications: e.target['show_notifications'].checked,
             showNotificationsDecreased: e.target['show_notifications_decreased'].checked
         });
+
+        e.target['access_token'].value = token;
     });
