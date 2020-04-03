@@ -1,4 +1,6 @@
 const notificationsUrl = "https://github.com/notifications";
+// see: https://wiki.developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Match_patterns
+const notificationsUrlPattern = "https://github.com/notifications/*";
 var count = 0;
 
 function update() {
@@ -97,7 +99,7 @@ setInterval(update, 1000 * 60);
 
 browser.browserAction.onClicked.addListener((e) => {
     browser.tabs.query({
-        'url': notificationsUrl
+        'url': notificationsUrlPattern
     }, (tabs) => {
         if (!tabs.length) {
             browser.tabs.create({
