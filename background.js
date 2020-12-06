@@ -1,5 +1,6 @@
 (function () {
-    let lastNotificationCount = 0;
+    let lastNotificationCount = 0,
+        responsePollInterval = 30;
 
     async function update() {
         let options,
@@ -21,6 +22,10 @@
                 cache: 'reload'
             });
 
+            responsePollInterval = response.headers.get('X-Poll-Interval') || responsePollInterval;
+
+            setTimeout(update, 1000 * responsePollInterval);
+
             if (!response.ok) {
                 throw new Error(response.statusText);
             }
@@ -31,6 +36,8 @@
                 title: error.message
             });
             browser.browserAction.disable();
+
+            setTimeout(update, 1000 * responsePollInterval);
 
             return;
         }
@@ -88,8 +95,6 @@
         });
     }
 
-    setInterval(update, 1000 * 60);
-
     browser.browserAction.onClicked.addListener((e) => {
         const notificationsUrl = 'https://github.com/notifications';
 
@@ -114,4 +119,6 @@
             });
         });
     });
+
+    update();
 })();
