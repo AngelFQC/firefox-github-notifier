@@ -3,6 +3,8 @@
         responsePollInterval = 30;
 
     async function update() {
+        if (!navigator.onLine) return;
+
         let options,
             githubNotifications;
 
